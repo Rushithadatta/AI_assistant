@@ -20,7 +20,7 @@ function Home(){
             navigate("/signin")
         } catch (error) {
             setUserData(null)
-           // console.log(error)
+            console.log(error)
         }
     };
     const Speak=()=>{
@@ -66,11 +66,11 @@ function Home(){
                .replace(/on youtube/gi, '')
                .trim();
              if (!query) {
-             // console.error("No valid search query for YouTube.");
+              console.error("No valid search query for YouTube.");
                 return;
                 }
                query = encodeURIComponent(userInput);
-           // console.log("Opening YouTube with query:", query);
+           console.log("Opening YouTube with query:", query);
             window.open(`https://www.youtube.com/results?search_query=${query}`, '_blank');
         }
     };
@@ -85,10 +85,10 @@ function Home(){
         if(!isSpeakingRef.current && !isRecognizingRef.current){
             try {
                recognitionRef.current.start();
-                //console.log("Recognition Requested to start");
+                console.log("Recognition Requested to start");
             } catch (err) {
                 if(err.name !== "InvalidStateError"){
-                    //console.error("Start error:", err);
+                    console.error("Start error:", err);
                 }  
             }
         }
@@ -101,12 +101,12 @@ function Home(){
     recognition.lang = 'en-US';
     recognitionRef.current = recognition
     recognition.onstart = () =>{
-       // console.log("Recognization started");
+       console.log("Recognization started");
         isRecognizingRef.current = true;
         setListening(true);
     };
     recognition.onend = () =>{
-      //  console.log("Recognition ended");
+      console.log("Recognition ended");
         isRecognizingRef.current = false;
         setListening(false);
         if(!isSpeakingRef.current){
@@ -116,7 +116,7 @@ function Home(){
         }
     };
     recognition.onerror = (event) =>{
-       // console.warn("Recognition error:" , event.error);
+      console.warn("Recognition error:" , event.error);
         isRecognizingRef.current = false;
         setListening(false);
         if(event.error !== "aborted" && !isSpeakingRef.current){
@@ -128,13 +128,13 @@ function Home(){
 
      recognition.onresult = async (e) => {
             const transcript = e.results[e.results.length - 1][0].transcript.trim();
-            //console.log("Transcript:", transcript);
+            console.log("Transcript:", transcript);
             if (transcript.toLowerCase().includes(userData.assistantName.toLowerCase())) {
                 recognition.stop()
                 isRecognizingRef.current =  false
                 setListening(false)
                 const data = await getGeminiResponse(transcript);
-               // console.log("Gemini Response:", data);
+               console.log("Gemini Response:", data);
                 if (data) {
                     handleCommand(data);
                 } else {
