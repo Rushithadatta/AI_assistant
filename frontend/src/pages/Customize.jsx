@@ -2,7 +2,7 @@ import React, { useRef, useState, useContext } from "react";
 import Card from "../components/Card";
 import image1 from "../assets/image1.png"
 import image2 from "../assets/image2.jpg"
-import image3 from "../assets/image3.png"
+import image3 from "../assets/Image3.png"
 import image4 from "../assets/image4.png"
 import image5 from  "../assets/image5.png"
 import image6 from "../assets/image6.jpeg"
