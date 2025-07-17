@@ -12,9 +12,9 @@ function UserContext({children}){
         try {
             const result = await axios.get(`${serverUrl}/api/user/current`, {withCredentials: true})
             setUserData(result.data)
-            //console.log(result.data)
+            console.log(result.data)
         } catch (error) {
-            //console.log(error)
+            console.log(error)
         }
     };
     const getGeminiResponse=async(command)=>{
@@ -22,7 +22,7 @@ function UserContext({children}){
         const result = await axios.post(`${serverUrl}/api/user/asktoassistant`,{command},{withCredentials:true})
         return result.data
         } catch (error) {
-            //console.error(error.response?.data || error.message || error);
+            console.error(error.response?.data || error.message || error);
         }
     };
     useEffect(() =>{
