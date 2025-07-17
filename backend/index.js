@@ -23,5 +23,5 @@ app.use("/api/user", userRouter)
 
 app.listen(port, () =>{
     connectDB()
-    //console.log(`Listening on port number ${port}`);
+    console.log(`Listening on port number ${port}`);
 })
