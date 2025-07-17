@@ -26,7 +26,7 @@ function SignIn(){
             setLoading(false)
             navigate("/")
         } catch (error) {
-           // console.log(error)
+            console.log(error)
             setUserData(null)
             setLoading(false)
             setErr(error.response.data.message)
