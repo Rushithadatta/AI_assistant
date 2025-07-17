@@ -38,7 +38,7 @@ export const askToAssistant =async (req,res)=>{
     }
     const user=await User.findById(req.userId);
     if (!user) {
-       // console.log("User not found with ID:", req.userId);
+       console.log("User not found with ID:", req.userId);
          return res.status(404).json({ response: "User not found." });
     }
      console.log("User found:", user.name);
@@ -47,12 +47,12 @@ export const askToAssistant =async (req,res)=>{
     const result = await geminiResponse(command, assistantName, userName);
     const jsonMatch=result.match(/{[\s\S]*}/);
     if(!jsonMatch) {
-       // console.log("No JSON match in Gemini result.");
+        console.log("No JSON match in Gemini result.");
         return res.status(400).json({response:"sorry, I can't understand"})
     }
     const gemResult = JSON.parse(jsonMatch[0])
     const type=gemResult.type
-   // console.log("Parsed Gemini result:", gemResult);
+    console.log("Parsed Gemini result:", gemResult);
     switch(type){
         case 'get-date' : 
             return res.json({
@@ -97,7 +97,7 @@ export const askToAssistant =async (req,res)=>{
     }
       
  } catch (error) {
-   // console.error("ASK ASSISTANT ERROR ===>", error);
+    console.error("ASK ASSISTANT ERROR ===>", error);
     return res.status(500).json({response:"ask assistant error"})
  }
 }
