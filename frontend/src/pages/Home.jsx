@@ -101,12 +101,12 @@ function Home(){
     recognition.lang = 'en-US';
     recognitionRef.current = recognition
     recognition.onstart = () =>{
-        console.log("Recognization started");
+       // console.log("Recognization started");
         isRecognizingRef.current = true;
         setListening(true);
     };
     recognition.onend = () =>{
-       console.log("Recognition ended");
+      //  console.log("Recognition ended");
         isRecognizingRef.current = false;
         setListening(false);
         if(!isSpeakingRef.current){
@@ -116,7 +116,7 @@ function Home(){
         }
     };
     recognition.onerror = (event) =>{
-       // console.warn("Recognition error:" , event.error);
+      console.warn("Recognition error:" , event.error);
         isRecognizingRef.current = false;
         setListening(false);
         if(event.error !== "aborted" && !isSpeakingRef.current){
@@ -134,7 +134,7 @@ function Home(){
                 isRecognizingRef.current =  false
                 setListening(false)
                 const data = await getGeminiResponse(transcript);
-                console.log("Gemini Response:", data);
+               // console.log("Gemini Response:", data);
                 if (data) {
                     handleCommand(data);
                 } else {
