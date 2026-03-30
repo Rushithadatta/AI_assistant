@@ -48,7 +48,7 @@ now your userInput- ${usercommand}`;
         });
         return result.data.candidates[0].content.parts[0].text.trim();
     } catch (error) {
-       // console.log(error)
+       console.log(error)
     }
 }
 export default geminiResponse;
